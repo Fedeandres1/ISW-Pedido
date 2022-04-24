@@ -1,0 +1,619 @@
+<!-- Registro en Alta,Modificacion o Consulta -->
+<form name="FormRegistro" [formGroup]="FormRegistro">
+  <fieldset>
+    <!--Datos Producto-->
+    <div class="form-group">
+      <h4
+        class="col-form-label col-sm-2 offset-sm-6 text-center"
+        for="Producto"
+      >
+        Datos del Producto
+      </h4>
+      <!--DESCRIPCCION-->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="Descripcion">
+          Descripcion <span class="text-danger">*</span>
+        </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control text-uppercase"
+            formControlName="Descripcion"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.Descripcion.touched || submitted) &&
+                FormRegistro.controls.Descripcion.errors
+            }"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.Descripcion.touched || submitted) &&
+              FormRegistro.controls.Descripcion.errors &&
+              FormRegistro.controls.Descripcion.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.Descripcion.touched || submitted) &&
+              (FormRegistro.controls.Descripcion.errors?.minlength ||
+                FormRegistro.controls.Descripcion.errors?.maxlength)
+            "
+            >Dato texto de 5 a 55 caracteres</span
+          >
+        </div>
+      </div>
+      <!-- formato imagen-->
+      <div class="row">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="Foto">
+          Adjuntar foto <span class="">(dato opcinal)</span>
+        </label>
+        <input
+          class="
+            form-control form-control-sm
+            col-form-label col-sm-2
+            offset-sm-2
+          "
+          id="formFileSm"
+          type="file"
+        />
+      </div>
+    </div>
+
+    <!--Direccion de busqueda-->
+    <div class="form-group">
+      <h4
+        class="col-form-label col-sm-2 offset-sm-6 text-center"
+        for="DireccionDeBusqueda"
+      >
+        Direccion de Busqueda
+      </h4>
+      <!--Direccion-->
+      <div class="row form-group">
+        <label
+          class="col-form-label col-sm-2 offset-sm-2"
+          for="DireccionDeBusqueda"
+          >Direccion<span class="text-danger">*</span></label
+        >
+        <div class="col-sm-6">
+          <input
+            type="text"
+            name="DireccionDeBusqueda"
+            class="form-control"
+            formControlName="DireccionDeBusqueda"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.DireccionDeBusqueda.touched ||
+                  submitted) &&
+                FormRegistro.controls.DireccionDeBusqueda.errors
+            }"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.DireccionDeBusqueda.touched ||
+                submitted) &&
+              FormRegistro.controls.DireccionDeBusqueda.errors &&
+              FormRegistro.controls.DireccionDeBusqueda.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.DireccionDeBusqueda.touched ||
+                submitted) &&
+              FormRegistro.controls.DireccionDeBusqueda.errors?.pattern
+            "
+          >
+            Dato numérico, 1 a 7 dígitos.
+          </span>
+        </div>
+      </div>
+      <!--Ciudad de Busqueda-->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="IdCiudades">
+          Ciudad <span class="text-danger">*</span>
+        </label>
+        <div class="col-sm-6">
+          <select
+            name="IdCiudad"
+            class="form-control"
+            formControlName="IdCiudad"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.IdCiudad.touched || submitted) &&
+                FormRegistro.controls.IdCiudad.errors,
+              'is-valid': !FormRegistro.controls.IdCiudad.errors
+            }"
+          >
+            <option *ngFor="let opt of Ciudades" [ngValue]="opt.IdCiudad">
+              ‌{{ opt.Nombre }}
+            </option>
+          </select>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.IdCiudad.touched || submitted) &&
+              FormRegistro.controls.IdCiudad.errors &&
+              FormRegistro.controls.IdCiudad.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+        </div>
+      </div>
+
+      <!-- referencia -->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="Referencia">
+          Referencia <span class=""></span>
+        </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control text-uppercase"
+            formControlName="Referencia"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.Referencia.touched || submitted) &&
+                FormRegistro.controls.Referencia.errors
+            }"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.Referencia.touched || submitted) &&
+              FormRegistro.controls.Referencia.errors &&
+              FormRegistro.controls.Referencia.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.Referencia.touched || submitted) &&
+              (FormRegistro.controls.Referencia.errors?.minlength ||
+                FormRegistro.controls.Referencia.errors?.maxlength)
+            "
+            >Dato texto de 5 a 55 caracteres</span
+          >
+        </div>
+      </div>
+    </div>
+    <!--Direccion de Destino-->
+    <div class="form-group">
+      <h4
+        class="col-form-label col-sm-2 offset-sm-6 text-center"
+        for="DireccionDeDestino"
+      >
+        Direccion de Destino
+      </h4>
+      <!--Direccion-->
+      <div class="row form-group">
+        <label
+          class="col-form-label col-sm-2 offset-sm-2"
+          for="DireccionDeDestino"
+          >Direccion<span class="text-danger">*</span></label
+        >
+        <div class="col-sm-6">
+          <input
+            type="text"
+            name="DireccionDeDestino"
+            class="form-control"
+            formControlName="DireccionDeDestino"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.DireccionDeDestino.touched ||
+                  submitted) &&
+                FormRegistro.controls.DireccionDeDestino.errors
+            }"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.DireccionDeDestino.touched || submitted) &&
+              FormRegistro.controls.DireccionDeDestino.errors &&
+              FormRegistro.controls.DireccionDeDestino.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.DireccionDeDestino.touched || submitted) &&
+              FormRegistro.controls.DireccionDeDestino.errors?.pattern
+            "
+          >
+            Dato numérico, 1 a 7 dígitos.
+          </span>
+        </div>
+      </div>
+      <!--Ciudad de Destino-->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="IdCiudades">
+          Ciudad <span class="text-danger">*</span>
+        </label>
+        <div class="col-sm-6">
+          <select
+            name="IdCiudadDestino"
+            class="form-control"
+            formControlName="IdCiudadDestino"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.IdCiudadDestino.touched || submitted) &&
+                FormRegistro.controls.IdCiudadDestino.errors,
+              'is-valid': !FormRegistro.controls.IdCiudadDestino.errors
+            }"
+          >
+            <option *ngFor="let opt of Ciudades" [ngValue]="opt.IdCiudad">
+              ‌{{ opt.Nombre }}
+            </option>
+          </select>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.IdCiudadDestino.touched || submitted) &&
+              FormRegistro.controls.IdCiudadDestino.errors &&
+              FormRegistro.controls.IdCiudadDestino.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+        </div>
+      </div>
+      <!-- referencia -->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="ReferenciaD">
+          Referencia <span class=""></span>
+        </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control text-uppercase"
+            formControlName="ReferenciaD"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.ReferenciaD.touched || submitted) &&
+                FormRegistro.controls.ReferenciaD.errors
+            }"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.ReferenciaD.touched || submitted) &&
+              FormRegistro.controls.ReferenciaD.errors &&
+              FormRegistro.controls.ReferenciaD.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.ReferenciaD.touched || submitted) &&
+              (FormRegistro.controls.ReferenciaD.errors?.minlength ||
+                FormRegistro.controls.ReferenciaD.errors?.maxlength)
+            "
+            >Dato texto de 5 a 55 caracteres</span
+          >
+        </div>
+      </div>
+    </div>
+    <!--Forma de pago-->
+    <div class="form-group">
+      <h4
+        class="col-form-label col-sm-2 offset-sm-6 text-center"
+        for="Forma de Pago"
+      >
+        Forma de pago
+      </h4>
+      <!--Forma de pago-->
+      <div class="row form-group">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="Forma de pago"
+          >Forma de pago<span class="text-danger">*</span></label
+        >
+        <div class="col-sm-6">
+          <select
+            name="FormaDePago"
+            class="form-control"
+            formControlName="FormaDePago"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.FormaDePago.touched || submitted) &&
+                FormRegistro.controls.FormaDePago.errors,
+              'is-valid': !FormRegistro.controls.FormaDePago.errors
+            }"
+          >
+            <option
+              *ngFor="let opt of FormasDePago"
+              [ngValue]="opt.IdFormaDePago"
+            >
+              ‌{{ opt.Nombre }}
+            </option>
+          </select>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.FormaDePago.touched || submitted) &&
+              FormRegistro.controls.FormaDePago.errors &&
+              FormRegistro.controls.FormaDePago.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.FormaDePago.touched || submitted) &&
+              FormRegistro.controls.FormaDePago.errors?.pattern
+            "
+          >
+            Dato numérico, 1 a 7 dígitos.
+          </span>
+        </div>
+      </div>
+      <!--Total-->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="Total">
+          Total $
+        </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control text-uppercase"
+            formControlName="Total"
+            readonly
+          />
+        </div>
+      </div>
+      <!--Efectivo-->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 offset-sm-2" for="Efectivo">
+          Abona con $<span class="text-danger">*</span>
+        </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control text-uppercase"
+            formControlName="Efectivo"
+            [ngClass]="{
+              'is-invalid':
+                (FormRegistro.controls.Efectivo.touched || submitted) &&
+                FormRegistro.controls.Efectivo.errors
+            }"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.Efectivo.touched || submitted) &&
+              FormRegistro.controls.Efectivo.errors &&
+              FormRegistro.controls.Efectivo.errors.required
+            "
+          >
+            Dato requerido
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="
+              (FormRegistro.controls.Referencia.touched || submitted) &&
+              (FormRegistro.controls.Referencia.errors?.minlength ||
+                FormRegistro.controls.Referencia.errors?.maxlength)
+            "
+            >Dato texto de 5 a 55 caracteres</span
+          >
+        </div>
+      </div>
+      <!--Tarjeta Visa-->
+      <div class="form-group">
+        <!-- N° Tarjeta Visa-->
+        <div class="form-group row">
+          <label
+            class="col-form-label col-sm-2 offset-sm-2"
+            for="NumeroTarjeta"
+          >
+            N° Tarjeta<span class="text-danger">*</span>
+          </label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              class="form-control text-uppercase"
+              formControlName="NumeroTarjeta"
+              [ngClass]="{
+                'is-invalid':
+                  (FormRegistro.controls.NumeroTarjeta.touched || submitted) &&
+                  FormRegistro.controls.NumeroTarjeta.errors
+              }"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (FormRegistro.controls.NumeroTarjeta.touched || submitted) &&
+                FormRegistro.controls.NumeroTarjeta.errors &&
+                FormRegistro.controls.NumeroTarjeta.errors.required
+              "
+            >
+              Dato requerido
+            </span>
+            <span
+              class="text-danger"
+              *ngIf="
+                (FormRegistro.controls.NumeroTarjeta.touched || submitted) &&
+                (FormRegistro.controls.NumeroTarjeta.errors?.minlength ||
+                  FormRegistro.controls.NumeroTarjeta.errors?.maxlength)
+              "
+              >Dato texto de 5 a 55 caracteres</span
+            >
+          </div>
+        </div>
+        <!-- Nombre y Apellido-->
+        <div class="form-group row">
+          <label
+            class="col-form-label col-sm-2 offset-sm-2"
+            for="NombreApellido"
+          >
+            Nombre y Apellido<span class="text-danger">*</span>
+          </label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              class="form-control text-uppercase"
+              formControlName="NombreApellido"
+              [ngClass]="{
+                'is-invalid':
+                  (FormRegistro.controls.NombreApellido.touched || submitted) &&
+                  FormRegistro.controls.NombreApellido.errors
+              }"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (FormRegistro.controls.NombreApellido.touched || submitted) &&
+                FormRegistro.controls.NombreApellido.errors &&
+                FormRegistro.controls.NombreApellido.errors.required
+              "
+            >
+              Dato requerido
+            </span>
+            <span
+              class="text-danger"
+              *ngIf="
+                (FormRegistro.controls.NombreApellido.touched || submitted) &&
+                (FormRegistro.controls.NombreApellido.errors?.minlength ||
+                  FormRegistro.controls.NombreApellido.errors?.maxlength)
+              "
+              >Dato texto de 5 a 55 caracteres</span
+            >
+          </div>
+        </div>
+        <!-- Fecha Vencimiento-->
+        <div class="form-group row">
+          <label
+            class="col-form-label col-sm-2 offset-sm-2"
+            for="FechaVencimiento"
+          >
+            Fecha Vencimiento<span class="text-danger">*</span>
+          </label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              class="form-control text-uppercase"
+              formControlName="FechaVencimiento"
+              [ngClass]="{
+                'is-invalid':
+                  (FormRegistro.controls.FechaVencimiento.touched ||
+                    submitted) &&
+                  FormRegistro.controls.FechaVencimiento.errors
+              }"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (FormRegistro.controls.FechaVencimiento.touched || submitted) &&
+                FormRegistro.controls.FechaVencimiento.errors &&
+                FormRegistro.controls.FechaVencimiento.errors.required
+              "
+            >
+              Dato requerido
+            </span>
+            <span
+              class="text-danger"
+              *ngIf="
+                (FormRegistro.controls.FechaVencimiento.touched || submitted) &&
+                (FormRegistro.controls.FechaVencimiento.errors?.minlength ||
+                  FormRegistro.controls.FechaVencimiento.errors?.maxlength)
+              "
+              >Dato texto de 5 a 55 caracteres</span
+            >
+          </div>
+        </div>
+        <!-- CVC-->
+        <div class="form-group row">
+          <label class="col-form-label col-sm-2 offset-sm-2" for="CVC">
+            CVC<span class="text-danger">*</span>
+          </label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              class="form-control text-uppercase"
+              formControlName="CVC"
+              [ngClass]="{
+                'is-invalid':
+                  (FormRegistro.controls.CVC.touched || submitted) &&
+                  FormRegistro.controls.CVC.errors
+              }"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (FormRegistro.controls.CVC.touched || submitted) &&
+                FormRegistro.controls.CVC.errors &&
+                FormRegistro.controls.CVC.errors.required
+              "
+            >
+              Dato requerido
+            </span>
+            <span
+              class="text-danger"
+              *ngIf="
+                (FormRegistro.controls.CVC.touched || submitted) &&
+                (FormRegistro.controls.CVC.errors?.minlength ||
+                  FormRegistro.controls.CVC.errors?.maxlength)
+              "
+              >Dato texto de 5 a 55 caracteres</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fecha Pedido-->
+    <div class="form-group row">
+      <label class="col-form-label col-sm-2 offset-sm-2">
+        Fecha del pedido <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-6">
+        <input
+          class="form-control"
+          name="FechaDelPedido"
+          formControlName="FechaDelPedido"
+          [ngClass]="{
+            'is-invalid':
+              (FormRegistro.controls.FechaDelPedido.touched || submitted) &&
+              FormRegistro.controls.FechaDelPedido.errors
+          }"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls.FechaDelPedido.touched || submitted) &&
+            FormRegistro.controls.FechaDelPedido.errors &&
+            FormRegistro.controls.FechaDelPedido.errors.required
+          "
+        >
+          Dato requerido
+        </span>
+        <span
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls.FechaDelPedido.touched || submitted) &&
+            FormRegistro.controls.FechaDelPedido.errors?.pattern
+          "
+        >
+          Dato fecha, formato dd/mm/aaaa.
+        </span>
+      </div>
+    </div>
+  </fieldset>
+  <div id="divMsjFormRegistro" class="row alert alert-danger">
+</div>
+  <!--texto: Revisar los datos ingresados...-->
+  <div id="divMsjFormRegistro" class="row alert alert-danger">
+    <span class="fas fa-exclamation-sign"></span>{{ Mensajes['RD'] }}
+  </div>
+</form>
